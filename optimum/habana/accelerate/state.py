@@ -72,7 +72,8 @@ class GaudiPartialState(PartialState):
                 self.process_index = rank
                 self.local_process_index = local_rank
                 if self.device is None:
-                    self.device = torch.device("hpu", self.local_process_index)
+                    # TODO not use hpu:X notation untill it's fully supported by bridge
+                    self.device = torch.device("hpu")
             else:
                 self.distributed_type = GaudiDistributedType.NO
                 self.num_processes = 1
